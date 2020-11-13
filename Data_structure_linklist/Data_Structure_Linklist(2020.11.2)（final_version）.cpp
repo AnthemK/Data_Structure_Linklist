@@ -1,5 +1,5 @@
-// Data_structure_linklist.cpp : ´ËÎÄ¼ş°üº¬ "main" º¯Êı¡£³ÌĞòÖ´ĞĞ½«ÔÚ´Ë´¦¿ªÊ¼²¢½áÊø¡£
-// ´ËÎªµÚÒ»´ÎÍ¨¹ıµÄ°æ±¾£¬µ«ÊÇÔÚÇå¿ÕListµÄÊ±ºò»¹ÓĞÒ»Ğ©ÎÊÌâ 
+// Data_structure_linklist.cpp : æ­¤æ–‡ä»¶åŒ…å« "main" å‡½æ•°ã€‚ç¨‹åºæ‰§è¡Œå°†åœ¨æ­¤å¤„å¼€å§‹å¹¶ç»“æŸã€‚
+// æ­¤ä¸ºç¬¬ä¸€æ¬¡é€šè¿‡çš„ç‰ˆæœ¬ï¼Œä½†æ˜¯åœ¨æ¸…ç©ºListçš„æ—¶å€™è¿˜æœ‰ä¸€äº›é—®é¢˜ 
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstdio>
@@ -11,26 +11,26 @@
 #define debug
 #define outt(x)  cout<<#x<<" = "<<x<<"    "
 #define hh cout<<endl
-#define elemval1 char        //   µÚÒ»ÖÖ´æ´¢µÄÈ¨ÖµÊı¾İÀàĞÍ
-#define elemval2 double       //   µÚ¶şÖÖ´æ´¢µÄÈ¨ÖµÊı¾İÀàĞÍ
-#define elemkey  double        //  ´æ´¢µÄ¼üÖµµÄÊı¾İÀàĞÍ
+#define elemval1 char        //   ç¬¬ä¸€ç§å­˜å‚¨çš„æƒå€¼æ•°æ®ç±»å‹
+#define elemval2 double       //   ç¬¬äºŒç§å­˜å‚¨çš„æƒå€¼æ•°æ®ç±»å‹
+#define elemkey  double        //  å­˜å‚¨çš„é”®å€¼çš„æ•°æ®ç±»å‹
 using namespace std;
 typedef long long ll;
 const int maxn = 1e6;
 
-void noelem(void) { cout << "NoElem" << endl; return; }          //Èô²éÕÒÖ¸¶¨Î»ÖÃÃ»ÓĞÔªËØ£¬»òÕßÒª²éÕÒµÄÔªËØ²»ÔÚ±íÀï£¬ÓÖ»òÕßÇ°Çıºó¼ÌÃ»ÓĞÖµ£¬¾ùÊä³öNoElem;
+void noelem(void) { cout << "NoElem" << endl; return; }          //è‹¥æŸ¥æ‰¾æŒ‡å®šä½ç½®æ²¡æœ‰å…ƒç´ ï¼Œæˆ–è€…è¦æŸ¥æ‰¾çš„å…ƒç´ ä¸åœ¨è¡¨é‡Œï¼Œåˆæˆ–è€…å‰é©±åç»§æ²¡æœ‰å€¼ï¼Œå‡è¾“å‡ºNoElem;
 
-class  Node {                   //µãÀà£¬´æ´¢Á½ÖÖÈ¨ÖµÒ»ÖÖ¼üÖµ£¬ºÍÖ¸ÏòÇ°Çıºó¼ÌµÄÖ¸Õë
+class  Node {                   //ç‚¹ç±»ï¼Œå­˜å‚¨ä¸¤ç§æƒå€¼ä¸€ç§é”®å€¼ï¼Œå’ŒæŒ‡å‘å‰é©±åç»§çš„æŒ‡é’ˆ
 	public:
 		elemval1 val1;
         elemval2 val2;
 		elemkey key;
 		Node* next_node;
 		Node* pre_node;
-		Node(void) {val1 = val2 = key = 0; next_node = pre_node = NULL;}    //ÆğÊ¼Îª¿Õ
-		Node(elemval1 a1, elemval2 a2, elemkey b, Node* c, Node* d) : val1(a1), val2(a2), key(b), next_node(c), pre_node(d) {};   //´«ÈëÆğÊ¼Öµ
+		Node(void) {val1 = val2 = key = 0; next_node = pre_node = NULL;}    //èµ·å§‹ä¸ºç©º
+		Node(elemval1 a1, elemval2 a2, elemkey b, Node* c, Node* d) : val1(a1), val2(a2), key(b), next_node(c), pre_node(d) {};   //ä¼ å…¥èµ·å§‹å€¼
         void printt(void) { outt(val1); outt(val2); outt(key); outt(next_node); outt(pre_node); hh; }
-		void print_val1(void) { cout << val1; return; }                    //¼òÒ×Êä³ö
+		void print_val1(void) { cout << val1; return; }                    //ç®€æ˜“è¾“å‡º
         void print_val2(void) { cout << val2; return; }
         bool print_poly(void) {
             if (val2 == 0) return 0; 
@@ -53,16 +53,16 @@ class  List {
 		Node* last_node;
 		List(void) { 
 			lenth = 0; now_pls = NULL; first_node = new Node();  last_node = new Node();
-			first_node->next_node = last_node; last_node->pre_node = first_node;        //½¨Á¢Ê×Î²ÉÚ±ø½Úµã
+			first_node->next_node = last_node; last_node->pre_node = first_node;        //å»ºç«‹é¦–å°¾å“¨å…µèŠ‚ç‚¹
 		}
-		~List(void) {                   //ĞèÒªÇå¿ÕÕû¸öÁ´±í
+		~List(void) {                   //éœ€è¦æ¸…ç©ºæ•´ä¸ªé“¾è¡¨
 			Node* nowwa = first_node;
 			while (nowwa->next_node != NULL) {
 				nowwa = nowwa->next_node;
 				delete nowwa->pre_node;
 			}
 		}
-        void print_all() {   //ÒÀ´Î±éÀúµ±Ç°±í£¬²¢Êä³öËùÓĞµÄ½ÚµãµÄËùÓĞ³ÉÔ±µÄÖµ
+        void print_all() {   //ä¾æ¬¡éå†å½“å‰è¡¨ï¼Œå¹¶è¾“å‡ºæ‰€æœ‰çš„èŠ‚ç‚¹çš„æ‰€æœ‰æˆå‘˜çš„å€¼
             cout<<"-----------"; hh;
 			outt(lenth); outt(now_pls); hh;
             Node* nowwa = first_node;
@@ -73,46 +73,46 @@ class  List {
             nowwa->print_all();
             hh;cout<<"-----------"; hh;
         }
-		bool ListEmpty(void) { return lenth ? 0 : 1; }     //·µ»ØÊÇ·ñÎª¿Õ
-		int ListLength(void) { return this->lenth; }       //·µ»ØÎ¬»¤µÄ³¤¶È
-		Node* ListTraverse(int typ, elemval1 aim_val, int aim_id) {     //ºËĞÄ²¿·Ö   ¸ù¾İtypÀ´±éÀúÁ´±í  (´«²Î Ç°ÖµºóÎ»ÖÃ)
+		bool ListEmpty(void) { return lenth ? 0 : 1; }     //è¿”å›æ˜¯å¦ä¸ºç©º
+		int ListLength(void) { return this->lenth; }       //è¿”å›ç»´æŠ¤çš„é•¿åº¦
+		Node* ListTraverse(int typ, elemval1 aim_val, int aim_id) {     //æ ¸å¿ƒéƒ¨åˆ†   æ ¹æ®typæ¥éå†é“¾è¡¨  (ä¼ å‚ å‰å€¼åä½ç½®)
 			Node* nowwa = first_node;
 			int id = 0;
 			while (nowwa->next_node != NULL) {
-				if (typ == 1 && aim_val == nowwa->val1) {     //typ == 1 ±íÊ¾¸ù¾İÖµÕÒÎ»ÖÃ£¬Êä³ö×îĞ¡Î»ÖÃ£¬²¢ÇÒ¸üĞÂnow_pls
+				if (typ == 1 && aim_val == nowwa->val1) {     //typ == 1 è¡¨ç¤ºæ ¹æ®å€¼æ‰¾ä½ç½®ï¼Œè¾“å‡ºæœ€å°ä½ç½®ï¼Œå¹¶ä¸”æ›´æ–°now_pls
 					cout << id << endl;
 					this->now_pls = nowwa;
 					return NULL;
-				} else if (typ == 2 && aim_id == id) {      //typ == 2 ±íÊ¾¸ù¾İÎ»ÖÃÕÒÖµ£¬Êä³öÖµ
+				} else if (typ == 2 && aim_id == id) {      //typ == 2 è¡¨ç¤ºæ ¹æ®ä½ç½®æ‰¾å€¼ï¼Œè¾“å‡ºå€¼
 					nowwa->print_val1(); hh;
 					return NULL;
-				} else if (typ == 3 && id != 0) { nowwa->print_val1();}  //typ == 3 ±íÊ¾Êä³öÕûÕÅÁ´±í
-				else if (typ == 4 && id == aim_id) { return nowwa;}    //typ == 4 ¸ù¾İÎ»ÖÃÕÒµ½µØÖ·¾Í·µ»ØµØÖ·
+				} else if (typ == 3 && id != 0) { nowwa->print_val1();}  //typ == 3 è¡¨ç¤ºè¾“å‡ºæ•´å¼ é“¾è¡¨
+				else if (typ == 4 && id == aim_id) { return nowwa;}    //typ == 4 æ ¹æ®ä½ç½®æ‰¾åˆ°åœ°å€å°±è¿”å›åœ°å€
 				id++; nowwa = nowwa->next_node;
 			}
             if (typ == 3) hh;
-			return nowwa;              //´Ë´¦·µ»ØµÄÒ»¶¨ÊÇÄ©Î²ÉÚ±øµÄµØÖ·
+			return nowwa;              //æ­¤å¤„è¿”å›çš„ä¸€å®šæ˜¯æœ«å°¾å“¨å…µçš„åœ°å€
 		}
 		void GetElem(int aim_id) { 
 			Node* nowwa = ListTraverse(2, 0, aim_id); 
-			if (nowwa != NULL) noelem();    //Ã»ÕÒµ½ £¬Èç¹ûÄÜ¹»ÕÒµ½Ò»¶¨ÒÑ¾­Êä³öÁË
+			if (nowwa != NULL) noelem();    //æ²¡æ‰¾åˆ° ï¼Œå¦‚æœèƒ½å¤Ÿæ‰¾åˆ°ä¸€å®šå·²ç»è¾“å‡ºäº†
 			return;
 		}
 		void LocateElem(elemval1 aim_val) { 
 			Node* nowwa = ListTraverse(1, aim_val, 0);
-			if (nowwa != NULL) noelem();   //Í¬ GetElem()
+			if (nowwa != NULL) noelem();   //åŒ GetElem()
 			return; 
 		}
-		Node* PriorElem(void) { return now_pls == NULL ? this->first_node : now_pls->pre_node ; }   //·µ»ØµÚÒ»¸öÔªËØ»òÕßµ±Ç°now_plsµÄÇ°Ò»¸öÔªËØ
-		Node* NextElem(void)  { return now_pls == NULL ? this->last_node : now_pls->next_node; }   //·µ»Ø×îºóÒ»¸öÔªËØ»òÕßµ±Ç°now_plsµÄºóÒ»¸öÔªËØ
-		void ListInsert(int aim_id, elemval1 aim_val) {               //Ö¸¶¨Ò»¸öÎ»ÖÃ£¬²åÈëÒ»¸öÈ¨Öµ
+		Node* PriorElem(void) { return now_pls == NULL ? this->first_node : now_pls->pre_node ; }   //è¿”å›ç¬¬ä¸€ä¸ªå…ƒç´ æˆ–è€…å½“å‰now_plsçš„å‰ä¸€ä¸ªå…ƒç´ 
+		Node* NextElem(void)  { return now_pls == NULL ? this->last_node : now_pls->next_node; }   //è¿”å›æœ€åä¸€ä¸ªå…ƒç´ æˆ–è€…å½“å‰now_plsçš„åä¸€ä¸ªå…ƒç´ 
+		void ListInsert(int aim_id, elemval1 aim_val) {               //æŒ‡å®šä¸€ä¸ªä½ç½®ï¼Œæ’å…¥ä¸€ä¸ªæƒå€¼
 			Node* nowwa = ListTraverse(4, 0, aim_id);
-            lenth++;                      //¸üĞÂ³¤¶È
-			Node* new_node = new Node(aim_val , 0, 0, nowwa, nowwa->pre_node);   //Ñ°ÕÒÎ»ÖÃ
+            lenth++;                      //æ›´æ–°é•¿åº¦
+			Node* new_node = new Node(aim_val , 0, 0, nowwa, nowwa->pre_node);   //å¯»æ‰¾ä½ç½®
 			(nowwa->pre_node)->next_node = new_node;
 			nowwa->pre_node = new_node;
 		}
-		void ListDelete(int aim_id) {                  //»ù±¾µÈÍ¬ListInsert
+		void ListDelete(int aim_id) {                  //åŸºæœ¬ç­‰åŒListInsert
 			Node* nowwa = ListTraverse(4, 0, aim_id);
 			if (nowwa->next_node == NULL) { noelem(); return; }
             lenth--;
@@ -121,7 +121,7 @@ class  List {
 			prenode->next_node = nextnode; nextnode->pre_node = prenode;
             nowwa->print_val1(); hh;
 		}
-		void CreateList(void) {      //°ÑÒÑ¾­ÅÅºÃĞòµÄÒ»¸ö¶àÏîÊ½·Åµ½Ò»¸ö¿ÕÁ´±íÀï
+		void CreateList(void) {      //æŠŠå·²ç»æ’å¥½åºçš„ä¸€ä¸ªå¤šé¡¹å¼æ”¾åˆ°ä¸€ä¸ªç©ºé“¾è¡¨é‡Œ
            // print_all();
 			Node* nowwa = first_node;
             int totlenth = lenth;
@@ -131,7 +131,7 @@ class  List {
                 else { delete new_node; lenth--; }
             }
 		}
-		void ShowList(void) {   //ÒÀ´Î±éÀúÔªËØ£¬È»ºóÊä³ö
+		void ShowList(void) {   //ä¾æ¬¡éå†å…ƒç´ ï¼Œç„¶åè¾“å‡º
             Node* nowwa = first_node;
             int flagg = 0;
             while (nowwa->next_node != NULL) {
@@ -144,7 +144,7 @@ class  List {
             }
             if(!flagg) cout<<0;hh; 
 		}
-        List* AddList(List* othe) {   //´«ÈëÁíÒ»¸öÁ´±íµÄµØÖ·£¬È»ºó×ö¶àÏîÊ½¼Ó·¨
+        List* AddList(List* othe) {   //ä¼ å…¥å¦ä¸€ä¸ªé“¾è¡¨çš„åœ°å€ï¼Œç„¶ååšå¤šé¡¹å¼åŠ æ³•
             List* final_poly = new List();
         //    print_all(); othe->print_all();
             Node* nowwa1 = this->first_node, * nowwa2 = othe->first_node, * ans_nowwa = final_poly->first_node;
@@ -172,7 +172,7 @@ class  List {
             }
             return final_poly;
         }
-        List* MinusList(List* othe) {              //´«ÈëÁíÒ»¸öÁ´±íµÄµØÖ·£¬È»ºó×ö¶àÏîÊ½¼õ·¨
+        List* MinusList(List* othe) {              //ä¼ å…¥å¦ä¸€ä¸ªé“¾è¡¨çš„åœ°å€ï¼Œç„¶ååšå¤šé¡¹å¼å‡æ³•
             List* final_poly = new List();
             bool if_change=0;
             Node* nowwa1 = this->first_node, * nowwa2 = othe->first_node, * ans_nowwa = final_poly->first_node;
